@@ -3,21 +3,19 @@ package util;
 import java.sql.*;
 
 public class DBUtil {
+    // 建立连接
     public static Connection getConnection() {
-        Connection conn = null;
-        final String div = "com.mysql.cj.jdbc.Driver";
-        final String rooturl = "jdbc:mysql://127.0.0.1:3306/elm";
-        final String user = "test";
-        final String pass = "test";
+        Connection con = null;
         try {
-            Class.forName(div);
-            conn = DriverManager.getConnection(rooturl, user, pass);
+            Class.forName(ConfigManager.getProp("div"));
+            con = DriverManager.getConnection(ConfigManager.getProp("url"), ConfigManager.getProp("user"), ConfigManager.getProp("pass"));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return conn;
+        return con;
     }
 
+    //关闭连接
     public static void close(ResultSet rs, PreparedStatement pst, Connection con) {
         try {
             if (rs != null) rs.close();
