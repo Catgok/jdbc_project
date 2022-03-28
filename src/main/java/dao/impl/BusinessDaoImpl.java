@@ -19,11 +19,11 @@ public class BusinessDaoImpl implements BusinessDao {
     @Override
     public List<Business> listBusiness(String businessName, String businessAddress) {
         List<Business> list = new ArrayList<>();
-        StringBuffer sql = new StringBuffer("select * from business where 1=1 ");
-        if (businessName != null && !businessName.equals("")) {
+        StringBuffer sql = new StringBuffer("select * from business where 1=1");
+        if (businessName != null && !"".equals(businessName)) {// "".equal(String )可以传入null值
             sql.append(" and businessName like '%" + businessName + "%' ");
         }
-        if (businessAddress != null && !businessAddress.equals("")) {
+        if (businessAddress != null && !"".equals(businessName)) {
             sql.append(" and businessAddress like '%" + businessAddress + "%' ");
         }
         try {
